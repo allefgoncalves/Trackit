@@ -1,5 +1,5 @@
 import Historic from './componets/Historic/Historic'
-import HomePage from './componets/HomePage/HomePgage';
+import HomePage from './componets/HomePage/HomePage';
 import Register from './componets/Register/Register';
 import Habits from './componets/Habits/Habits';
 import Today from './componets/Today/Today'

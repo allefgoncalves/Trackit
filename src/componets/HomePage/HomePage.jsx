@@ -1,9 +1,8 @@
 import {useParams, Navigate, Link} from "react-router-dom";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
-import logo from './../../assets/logo.png';
+import logoIMG from './../../assets/logo.png';
 import LoginPage from './Login';
+import Containerhome from "../style/Containerhome";
 
 
 export default function HomePage(){
@@ -17,17 +16,6 @@ export default function HomePage(){
     );
 }
 
-const Containerhome =styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    img{
-        width: 180px;
-        height: 178px;
-        margin: 68px auto 36px;
-    }
-`
 const StyledLink = styled(Link)`
   height: 40px;
   display: flex;
