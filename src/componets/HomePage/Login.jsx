@@ -47,6 +47,7 @@ export default function LoginPage({setToken}){
                     value={password}
                 />
                 <Button type="submit">Entrar</Button>
+                <Button type="reset">cancelar</Button>
             </form>
         </ContainerInput>
     );

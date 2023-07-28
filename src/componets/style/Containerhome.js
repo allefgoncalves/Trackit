@@ -5,6 +5,7 @@ const Containerhome =styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
     img{
         width: 180px;
         height: 178px;
