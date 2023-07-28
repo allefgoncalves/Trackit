@@ -10,14 +10,10 @@ export default function LoginPage({setToken}){
     
         e.preventDefault();
     
-        const user ={
-          email,
-          password
-        }
         //trocar url
         const URL = 'https://mock-api.driven.com.br/api/v2/camppi/auth/login';
+        const promise = axios.post(URL, form);
     
-        const promise = axios.post(URL, user);
         promise.then( resp => {
           console.log(resp.data);//verificar resposta da API
           setToken(resp.data.token);
@@ -60,7 +56,7 @@ export default function LoginPage({setToken}){
                     onChange={ e => setForm({...form, password:e.target.value})}
                     value={form.password}
                 />
-                <Button type="submit">Entrar</Button>
+                <Button type="submit">Cadastrar</Button>
             </form>
         </ContainerInput>
     );

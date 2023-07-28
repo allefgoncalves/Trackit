@@ -1,6 +1,6 @@
 import {useParams, Navigate, Link} from "react-router-dom";
 import styled from 'styled-components';
-import logoIMG from './../../assets/logo.png';
+import logo from './../../assets/logo.png';
 import LoginPage from './Login';
 import Containerhome from "../style/Containerhome";
 
