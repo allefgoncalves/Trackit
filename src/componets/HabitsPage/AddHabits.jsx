@@ -48,8 +48,8 @@ export default function AddHabits(){
                     <button type="button" active={day === 'Sab'} onClick={() => setday("S")}>S</button>
                 </Grid>
                 <Footer>
-                    <button type="reset">Cancelar</button>
-                    <button type="submit">Cadastrar</button>
+                    <div type="reset">Cancelar</div>
+                    <button type="submit">Salvar</button>
                 </Footer>
             </form>
         </Add>
@@ -58,11 +58,44 @@ export default function AddHabits(){
 
 const Footer = styled.div`
     display: flex;
-    position: relative;
+    justify-content: end;
+    align-items: end;
     bottom: 0px;
     right: 0px;
-    height: 35px;
-    
+    height: 63px;
+
+    div{
+        width: 84px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:#52B6FF;
+
+        font-family: Lexend Deca;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
+
+    button{
+        width: 84px;
+        height: 35px;
+        margin-left: 15px;
+        background-color: #52B6FF;
+        color:#FFFFFF;
+        border-radius: 5px;
+        border: none;
+
+        font-family: Lexend Deca;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: center;
+    }
 `
 
 const Add = styled.div`
@@ -72,14 +105,19 @@ const Add = styled.div`
     margin: 20px auto;
     display: flex;
     padding: 10px;
- ;
+    border-radius: 5px;
 `
 
 const Grid = styled.div`
-  display: flex;
-  width: 100%;
-
-  *:not(:last-child) {
-    margin-right: 10px;
+    display: flex;
+    width: 100%;
+    button{
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+    }
+    *:not(:last-child) {
+        margin-right: 10px;
   }
 `
