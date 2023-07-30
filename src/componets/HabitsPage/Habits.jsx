@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
-import trash from './../../assets/trash-outline.svg'
+import trash from './../../assets/trash-outline.svg';
+import { Icon } from '@iconify/react';
 
 export default function Habits(){
     return(
@@ -22,7 +23,7 @@ export default function Habits(){
                     </Grid>
                 </div>
                 <Trash>
-                    <img src={trash} />
+                    <Icon icon="ion:trash-outline" color="grey" width="13" height="15" />
                 </Trash>
             </Habito>
         </>
@@ -36,8 +37,8 @@ const Trash =styled.div`
     justify-content: end;
     align-items: start;
     img{
-        width: 13px;
-        height: 15px;
+        width: 20px;
+        height: 25px;
     }
 `
 

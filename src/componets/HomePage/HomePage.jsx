@@ -1,9 +1,8 @@
-import {useParams, Navigate, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import logo from './../../assets/logo.png';
 import LoginPage from './Login';
 import Containerhome from "../style/Containerhome";
-
 
 export default function HomePage(){
     
@@ -11,7 +10,7 @@ export default function HomePage(){
         <Containerhome>
             <img src={logo} />
             <LoginPage />
-            <StyledLink to="/sign-up">Não tem uma conta? Cadastre-se!</StyledLink>
+            <StyledLink to="/cadastro">Não tem uma conta? Cadastre-se!</StyledLink>
         </Containerhome>
     );
 }

@@ -33,7 +33,7 @@ export default function AddHabits(){
             <form onSubmit={signUp}>
                 <Input
                 type="text"
-                placeholder="Nome"
+                placeholder="Nome do hábito"
                 required
                 onChange={e => setnome(e.target.value)}
                 value={nome}
@@ -115,7 +115,9 @@ const Grid = styled.div`
         width: 30px;
         height: 30px;
         border-radius: 5px;
-        border: none;
+        color:#DBDBDB;
+        border:1px solid #DBDBDB;
+        background-color:#FFFFFF;
     }
     *:not(:last-child) {
         margin-right: 10px;

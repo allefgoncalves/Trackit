@@ -9,21 +9,19 @@ export const ContainerInput =styled.div`
     }
     
 `
-
-
  export const Input = styled.input`
   height: 45px;
   width: 283px;
-  border: 1px solid #BEBEBE;
+  border: 1px solid #DBDBDB;
   background-color: #FFFFFF;
-  color: #222222;
+  color: #DBDBDB;
   font-family: 'Lexend Deca', sans-serif;
   padding: 0px 10px;
   margin: 10px auto;
   border-radius: 4px;
 
   ::placeholder {
-    color: #222222;
+    color: #BEBEBE;
     font-family: 'Lexend Deca', sans-serif;
   }
 `

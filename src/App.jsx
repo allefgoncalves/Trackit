@@ -7,22 +7,26 @@ import { styled } from 'styled-components';
 import { useState } from 'react';
 import RegisterPage from './componets/RegisterPage/RegisterPage';
 import Teste from './Teste';
+import UseContext from './componets/contexts/UseContext';
 
 export default function App() {
   const [token, setToken] = useState("");
+  const [imgUser, setImgUser] =useState("");
 
   return (
     <ContainerMain>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage setToken={setToken}/>}></Route>
-          <Route path={`/cadastro`} element={<RegisterPage />}></Route>
-          <Route path={`/habitos`} element={<HabitsPage />}></Route>
-          <Route path={`/hoje`} element={<TodayPage />}></Route>
-          <Route path={`/historico`} element={<HistoricPage/>}></Route>
-          <Route path={`/teste`} element={<Teste/>}></Route>
-        </Routes>
-      </BrowserRouter>
+      <UseContext.Provider value={{token, setToken, imgUser, setImgUser}}> 
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path={`/cadastro`} element={<RegisterPage />}></Route>
+            <Route path={`/habitos`} element={<HabitsPage />}></Route>
+            <Route path={`/hoje`} element={<TodayPage />}></Route>
+            <Route path={`/historico`} element={<HistoricPage/>}></Route>
+            <Route path={`/teste`} element={<Teste/>}></Route>
+          </Routes>
+        </BrowserRouter>
+      </UseContext.Provider>
     </ContainerMain>
   )
 }

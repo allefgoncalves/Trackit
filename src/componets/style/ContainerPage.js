@@ -5,7 +5,7 @@ const ContainerPage =styled.div`
     flex-direction: column;
     background-color: #F2F2F2;
     width: 345px;
-    min-height: 667px;
+    min-height: 695px;
     margin-top: 70px;
     padding: 0px 15px;
 `

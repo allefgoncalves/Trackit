@@ -1,17 +1,18 @@
-import {useParams, Navigate, Link, useNavigate} from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { Navigate} from "react-router-dom";
+import { useState, useContext } from 'react';
 import { Input, Button, ContainerInput } from '../style/Input';
+import axios from 'axios';
+import UseContext from './../contexts/UseContext';
 
-export default function LoginPage({setToken}){
-    const Navigate = useNavigate();
-    const [form, setForm] = useState({name:"", email:"", image:"", password:""});
+export default function LoginPage(){
+    const [form, setForm] = useState({name:"", email:"",image:"", password:""});
+    const { setToken, setImgUser} = useContext(UseContext);
 
     function login(e){
     
         e.preventDefault();
     
-        //trocar url
-        const URL = 'https://mock-api.driven.com.br/api/v2/camppi/auth/login';
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up';
         const promise = axios.post(URL, form);
     
         promise.then( resp => {
@@ -20,7 +21,10 @@ export default function LoginPage({setToken}){
           Navigate("/");
         });
         // promise.catch( erro => alert(erro.response.data.message));
-        promise.catch( erro => console.log(erro));
+        promise.catch( erro => {
+            console.log(erro);
+            alert(`${erro.response.data.message}`);
+        });
       }
     
     
@@ -31,7 +35,6 @@ export default function LoginPage({setToken}){
                     type="text"
                     placeholder="Nome"
                     required
-                    // onChange={ e => setName(e.target.value)}
                     onChange={ e => setForm({...form, name:e.target.value}) }
                     value={form.name}
                 />
@@ -46,7 +49,10 @@ export default function LoginPage({setToken}){
                     type="url"
                     placeholder="Imagem"
                     required
-                    onChange={ e => setForm({...form, image:e.target.value})}
+                    onChange={ e =>{
+                        setForm({...form, image:e.target.value});
+                        setImgUser(e.target.value);
+                    }}
                     value={form.image}
                 />
                 <Input

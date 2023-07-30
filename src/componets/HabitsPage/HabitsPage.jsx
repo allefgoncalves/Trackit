@@ -4,6 +4,7 @@ import LowerBar from '../Page/lowerBar';
 import ContainerPage from '../style/ContainerPage';
 import Habits from './Habits';
 import AddHabits from './AddHabits';
+import { Icon } from '@iconify/react';
 
 export default function HabitsPage(){
 
@@ -17,7 +18,7 @@ export default function HabitsPage(){
                 
                 <MenuHabits>
                     <p>Meus hábitos</p>
-                    <button onClick={addHabito}>+</button>
+                    <button><Icon icon="mingcute:add-fill" color="white" width="69" height="69" /></button>
                 </MenuHabits>
 
                 <AddHabits />

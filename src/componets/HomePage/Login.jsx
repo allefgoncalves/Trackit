@@ -3,10 +3,9 @@ import { useState, useEffect } from 'react';
 import { Input, Button, ContainerInput } from '../style/Input';
 
 export default function LoginPage({setToken}){
-    const Navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    
     function login(e){
     
         e.preventDefault();
@@ -15,8 +14,7 @@ export default function LoginPage({setToken}){
           email,
           password
         }
-        //trocar url
-        const URL = 'https://mock-api.driven.com.br/api/v2/camppi/auth/login';
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login';
     
         const promise = axios.post(URL, user);
         promise.then( resp => {
@@ -27,7 +25,6 @@ export default function LoginPage({setToken}){
         // promise.catch( erro => alert(erro.response.data.message));
         promise.catch( erro => console.log(erro));
       }
-    
     
     return(
         <ContainerInput>

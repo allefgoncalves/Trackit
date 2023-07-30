@@ -60,6 +60,7 @@ const Baseboard = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    margin-top: 0px;
     padding: 0px 30px;
     border: #e0e0e093 1px solid;
     
