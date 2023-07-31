@@ -1,13 +1,11 @@
-import { Navigate} from "react-router-dom";
-import { useState, useContext } from 'react';
+import { useNavigate} from "react-router-dom";
+import { useState } from 'react';
 import { Input, Button, ContainerInput } from '../style/Input';
 import axios from 'axios';
-import UseContext from './../contexts/UseContext';
 
 export default function LoginPage(){
     const [form, setForm] = useState({name:"", email:"",image:"", password:""});
-    const { setImgUser } = useContext(UseContext);
-
+    const navigate = useNavigate();
     function login(e){
     
         e.preventDefault();
@@ -17,7 +15,7 @@ export default function LoginPage(){
     
         promise.then( resp => {
           console.log(resp.data);
-          Navigate("/");
+          navigate("/");
         });
 
         promise.catch( erro => {
@@ -48,10 +46,7 @@ export default function LoginPage(){
                     type="url"
                     placeholder="Imagem"
                     required
-                    onChange={ e =>{
-                        setForm({...form, image:e.target.value});
-                        setImgUser(e.target.value);
-                    }}
+                    onChange={ e =>setForm({...form, image:e.target.value})}
                     value={form.image}
                 />
                 <Input

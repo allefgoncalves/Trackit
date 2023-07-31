@@ -7,7 +7,7 @@ import UseContext from './../contexts/UseContext';
 export default function LoginPage(){
     const navigate = useNavigate();
     const [user, setUser] = useState({email:"", password:""});
-    const { setToken } = useContext(UseContext);
+    const { setToken, setImgUser} = useContext(UseContext);
 
     function login(e){
     
@@ -19,11 +19,12 @@ export default function LoginPage(){
         promise.then( resp => {
             console.log(resp.data);
             setToken(resp.data.token);
+            setImgUser(resp.data.image);
             navigate('/habitos');
         });
         promise.catch( erro =>{
-            alert(erro.response.data.message)
-            console.log(erro)
+            alert(erro.response.data.message);
+            console.log(erro);
         });
       }
     

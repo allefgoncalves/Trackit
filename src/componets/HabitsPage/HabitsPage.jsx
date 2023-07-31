@@ -5,11 +5,12 @@ import ContainerPage from '../style/ContainerPage';
 import Habits from './Habits';
 import AddHabits from './AddHabits';
 import { Icon } from '@iconify/react';
+import { useState } from 'react';
 
 export default function HabitsPage(){
-
+    const [add, setadd]= useState(false);
     function addHabito(){
-        console.log('teste');
+        setadd(true);
     }
     return(
         <>
@@ -18,10 +19,9 @@ export default function HabitsPage(){
                 
                 <MenuHabits>
                     <p>Meus hábitos</p>
-                    <button><Icon icon="mingcute:add-fill" color="white" width="69" height="69" /></button>
+                    <button onClick={addHabito}><Icon icon="mingcute:add-fill" color="white" width="69" height="69" /></button>
                 </MenuHabits>
-
-                <AddHabits />
+                {(add)?<AddHabits setadd={setadd}/>:""}
                 <Habits /> 
             </ContainerPage>
             <LowerBar/>

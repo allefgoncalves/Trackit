@@ -1,32 +1,53 @@
 import { styled } from 'styled-components';
-import { useState } from "react";
+import { useState, useContext} from "react";
 import { Input } from '../style/Input';
 import axios from 'axios';
+import UseContext from './../contexts/UseContext';
+// tokem alf: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTkyOCwiaWF0IjoxNjkwODIzNDU2fQ.GAx90xa_9BjbwZQIPTzv-Cnd7XY5bFHkV9Bmp1_2urs"
 
-export default function AddHabits(){
-    const [day, setday] = useState("");
-    const [nome, setnome] = useState("");
-
+export default function AddHabits({setadd}){
+    const [day, setday] = useState([]);
+    const [form, setForm] = useState({name:"", days:{}});
+   // const { token } = useContext(UseContext);
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTkyOCwiaWF0IjoxNjkwODIzNDU2fQ.GAx90xa_9BjbwZQIPTzv-Cnd7XY5bFHkV9Bmp1_2urs";
     function signUp(e){
-    
+
         e.preventDefault();
-    
-        const user ={
-          email,
-          password
-        }
-        //trocar url
-        const URL = 'https://mock-api.driven.com.br/api/v2/camppi/auth/login';
-    
-        const promise = axios.post(URL, user);
+        form.days=day;
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits';
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        const promise = axios.post(URL, form, config);
+        
         promise.then( resp => {
-          console.log(resp.data);//verificar resposta da API
-          setToken(resp.data.token);
-          Navigate("/habitos");
+          console.log(resp.data);
         });
-        // promise.catch( erro => alert(erro.response.data.message));
-        promise.catch( erro => console.log(erro));
-      }
+
+        promise.catch( erro => alert(erro.response.data.message));
+        //promise.catch( erro => console.log(erro));
+    }
+   
+    function compara(x){
+        for(let i=0;i<day.length;i++){
+            if(day[i]==x){
+                return true;
+            }
+        }
+        return false;        
+    }   
+
+    function add(dia){
+        console.log(compara(dia));
+            if(day.length!=0&&compara(dia)){
+                    let novo =day.filter(x=>x!=dia)
+                    setday(novo);
+            }else{
+                let x= day;
+                x.push(dia);
+                setday(x);
+            }
+    }
 
     return(
         <Add>
@@ -35,21 +56,21 @@ export default function AddHabits(){
                 type="text"
                 placeholder="Nome do hábito"
                 required
-                onChange={e => setnome(e.target.value)}
-                value={nome}
+                onChange={ e => setForm({...form, name:e.target.value}) }
+                value={form.name}
                 />
                 <Grid>  {/*botoes dos dias da semnada*/}
-                    <button type="button" active={day === 'Dom'} onClick={() => setday("D")}>D</button>
-                    <button type="button" active={day === 'Seg'} onClick={() => setday("S")}>S</button>
-                    <button type="button" active={day === 'Ter'} onClick={() => setday("T")}>T</button>
-                    <button type="button" active={day === 'Qua'} onClick={() => setday("Q")}>Q</button>
-                    <button type="button" active={day === 'Qui'} onClick={() => setday("Q")}>Q</button>
-                    <button type="button" active={day === 'Sex'} onClick={() => setday("S")}>S</button>
-                    <button type="button" active={day === 'Sab'} onClick={() => setday("S")}>S</button>
+                <button type="button" active={true==`${compara(0)}`} onClick={() => add(0)}>D</button>
+                    <button type="button" active={compara(1)} onClick={() => add(1)}>S</button>
+                    <button type="button" active={compara(2)} onClick={() => add(2)}>T</button>
+                    <button type="button" active={compara(3)} onClick={() => add(3)}>S</button>
+                    <button type="button" active={compara(4)} onClick={() => add(4)}>Q</button>
+                    <button type="button" active={compara(5)} onClick={() => add(5)}>Q</button>
+                    <button type="button" active={compara(6)} onClick={() => add(6)}>S</button>
                 </Grid>
                 <Footer>
-                    <div type="reset">Cancelar</div>
-                    <button type="submit">Salvar</button>
+                    <div><button type="reset" value="Reset">Cancelar</button></div>
+                    <button type="submit" value="Submit">Salvar</button>
                 </Footer>
             </form>
         </Add>
@@ -63,23 +84,6 @@ const Footer = styled.div`
     bottom: 0px;
     right: 0px;
     height: 63px;
-
-    div{
-        width: 84px;
-        height: 35px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color:#52B6FF;
-
-        font-family: Lexend Deca;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 20px;
-        letter-spacing: 0em;
-        text-align: center;
-    }
-
     button{
         width: 84px;
         height: 35px;
@@ -95,6 +99,24 @@ const Footer = styled.div`
         line-height: 20px;
         letter-spacing: 0em;
         text-align: center;
+    }
+    div{
+        button{    
+        width: 84px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:#52B6FF;
+        background-color: #FFFFFF;
+
+        font-family: Lexend Deca;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: center;
+        }
     }
 `
 
@@ -115,11 +137,11 @@ const Grid = styled.div`
         width: 30px;
         height: 30px;
         border-radius: 5px;
-        color:#DBDBDB;
+        color: ${(props) => typeof props.active !== 'boolean' || props.active ? "#FFFFFF" : "#DBDBDB"};
         border:1px solid #DBDBDB;
-        background-color:#FFFFFF;
+        background-color: ${(props) => typeof props.active !== 'boolean' || props.active ? "#DBDBDB" : "#FFFFFF"};
     }
     *:not(:last-child) {
         margin-right: 10px;
-  }
+    }
 `

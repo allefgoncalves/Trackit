@@ -1,10 +1,15 @@
 import { styled } from "styled-components";
+import UseContext from './../contexts/UseContext';
+import { useContext } from 'react';
+import user from './../../assets/user.jpg';
+
 
 export default function TopBar(){
+    const { imgUser } = useContext(UseContext);
     return(
         <Header>
             <p>TrackIt</p>
-            <img src='https://tse2.mm.bing.net/th?id=OIP.TDj2k9Vo4KPQkvR9siBhWQHaHa&pid=Api&P=0&h=180'/>
+            <img src={(imgUser!=null&&imgUser!=""&&imgUser!=undefined)?imgUser: user}/>
         </Header>
     );
 }
