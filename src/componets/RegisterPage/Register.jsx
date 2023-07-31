@@ -6,7 +6,7 @@ import UseContext from './../contexts/UseContext';
 
 export default function LoginPage(){
     const [form, setForm] = useState({name:"", email:"",image:"", password:""});
-    const { setToken, setImgUser} = useContext(UseContext);
+    const { setImgUser } = useContext(UseContext);
 
     function login(e){
     
@@ -16,11 +16,10 @@ export default function LoginPage(){
         const promise = axios.post(URL, form);
     
         promise.then( resp => {
-          console.log(resp.data);//verificar resposta da API
-          setToken(resp.data.token);
+          console.log(resp.data);
           Navigate("/");
         });
-        // promise.catch( erro => alert(erro.response.data.message));
+
         promise.catch( erro => {
             console.log(erro);
             alert(`${erro.response.data.message}`);
